@@ -1,0 +1,85 @@
+@(pieces: List[models.Piece])
+
+@main("Ravé Jewelry") {
+
+    <div id="imageFrame">
+        <div id="image" style="background:url('@pieces.get(0).getImages().get(0).url');background-size: cover;opacity: 0;background-position:@pieces.get(0).getImages().get(0).focus"></div>
+        <div id="standbyImage" style="background-image:url('@routes.Assets.at("images/loader.gif")');"></div>
+    </div>
+
+
+    <div id="menuBar" class="nano">
+        <div class="content">
+            <ul>
+                @for(index <- 0 until pieces.size){
+                <li class="imageTile"><div class="menuButton" id="piece_@pieces.get(index).id"> <!--href="@pieces.get(index).id"-->
+                    <img src="@pieces.get(index).thumbnail">
+                    <span>@pieces.get(index).name<br><br>@pieces.get(index).description</span>
+                </div></li>
+                }
+            </ul>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+        var imgCont = $("#imageFrame");
+        var menBar = $("#menuBar");
+        var navBar = $("#navbar");
+
+        resize = function(ow,oh){
+            var w = $(window).width() - ow;
+            var h = $(window).height() - oh;
+            imgCont.css("width",(w).toString() + 'px');
+            imgCont.css("height",(h).toString() + 'px');
+            imgCont.css("background-position","@pieces.get(0).getImages().get(0).focus");
+            menBar.css("height",(h).toString() + 'px');
+        }
+
+        //$("#image").on('load', function(){
+            resize(menBar.outerWidth() , navBar.height());
+        //})
+
+        $(window).resize(function() {
+            resize(menBar.outerWidth() , navBar.height());
+        });
+
+        $(".menuButton").click(function(){
+            var thisDiv = $(this);
+            var id = thisDiv.attr('id');
+            $.getJSON("/item/"+ id.replace('piece_', ''), function(piece) {
+                var images = piece.images;
+                var firstImg = images[0];
+
+                //$("#image").css('visibility', 'hidden');
+                $("#image").css('opacity', '0');
+                $("#image").css('background-image', 'url(' + firstImg.url + ')');
+                $("#image").css('background-position', 'url(' + firstImg.focus + ')');
+
+                $(function () {
+                    $('<img>').attr('src', function () {
+                        var imgUrl = $("#image").css('background-image');
+                        imgUrl = imgUrl.substring(4, imgUrl.length - 1);
+                        return imgUrl;
+                    }).on('load',function () {
+                        $("#image").css('opacity', '1');
+                    });
+                });
+
+            });
+        });
+
+        $(function () {
+            $('<img>').attr('src', function () {
+                var imgUrl = $("#image").css('background-image');
+                imgUrl = imgUrl.substring(4, imgUrl.length - 1);
+                return imgUrl;
+            }).on('load',function () {
+                $("#image").css('opacity', '1');
+            });
+        });
+
+        $(".nano").nanoScroller({ alwaysVisible: true });
+    </script>
+}

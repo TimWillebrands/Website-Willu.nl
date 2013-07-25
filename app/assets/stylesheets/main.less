@@ -1,0 +1,267 @@
+@import url(http://fonts.googleapis.com/css?family=Dosis:400);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+
+//Global values
+
+@menuBarWidth: 26em;
+@navBarHeight: 52px;
+
+@mainColour: #333333;
+@accentColour: #05326D;
+@hoverColour: lighten(@accentColour, 35%);
+//@edgeColour: lighten(@accentColour, 5%);   //Kader om navbar knoppen
+@edgeColour: #05326D;
+
+@textColour: #cbcbcb;
+@activeTextColour: #f6f6f6;
+
+
+//Mixin's
+
+.dosis (@textSize: 18px){
+  font-family:'Dosis', Tahoma, Arial, sans-serif;
+  font-size:@textSize;
+}
+
+.openSans (@textSize: 12px){
+  font-family:'Open Sans', Helvetica, Arial, sans-serif;
+  font-size:@textSize;
+}
+
+
+//Normal statements
+
+body{
+  margin: 0px;
+  .dosis(12px);
+}
+
+
+//Id statements
+
+#navbar {
+  position: fixed;
+  width: 100%;
+  padding:0;
+  margin:0;
+  border:0;
+  background:@mainColour;
+  border-bottom:4px solid @accentColour;
+  .dosis;
+  ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+    position:relative;
+    z-index:597;
+    text-transform:uppercase;
+    li.hover, li:hover {
+      position:relative;
+      z-index:599;
+      cursor:default;
+    }
+    li:hover > a, li.active > a {
+      background:@accentColour;
+      color:@activeTextColour;
+    }
+    li {
+      float:left;
+      min-height:1px;
+      vertical-align:middle;
+    }
+    ul {
+      visibility:hidden;
+      position:absolute;
+      top:100%;
+      left:0;
+      z-index:598;
+      width:100%;
+      bottom:0;
+      margin-top:0;
+      border-top:4px solid @accentColour;
+      text-transform:none;
+      min-width:190px;
+      li {
+        float:none;
+        font-weight:normal;
+        position:relative;
+      }
+      ul {
+        top:0;
+        left:auto;
+        right:-99.5%;
+        border-top:0 none;
+      }
+      a {
+        background:@accentColour;
+        color:@activeTextColour;
+        border:1px solid @edgeColour;
+        border-top:0 none;
+        line-height:150%;
+        padding:16px 20px;
+      }
+      li:first-child > a {
+        border-top:1px solid @edgeColour;
+      }
+      li:hover > a {
+        background:@hoverColour;
+      }
+      li:last-child > a {
+        -moz-border-radius:0 0 3px 3px;
+        -webkit-border-radius:0 0 3px 3px;
+        border-radius:0 0 3px 3px;
+        -moz-background-clip:padding;
+        -webkit-background-clip:padding-box;
+        background-clip:padding-box;
+        -moz-box-shadow:0 1px 0 @accentColour;
+        -webkit-box-shadow:0 1px 0 @accentColour;
+        box-shadow:0 1px 0 @accentColour;
+      }
+      li:last-child:hover > a {
+        -moz-border-radius:0 0 0 3px;
+        -webkit-border-radius:0 0 0 3px;
+        border-radius:0 0 0 3px;
+        -moz-background-clip:padding;
+        -webkit-background-clip:padding-box;
+        background-clip:padding-box;
+      }
+      li.has-sub > a:after {
+        content:'+';
+        position:absolute;
+        top:50%;
+        right:15px;
+        margin-top:-8px;
+      }
+    }
+    li:hover > ul {
+      visibility:visible;
+    }
+    li.has-sub > a:after {
+      content:'+';
+      margin-left:5px;
+    }
+    li.last ul {
+      left:auto;
+      right:0;
+      ul {
+        left:auto;
+        right:99.5%;
+      }
+    }
+  }
+  li {
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  a {
+    display:block;
+    line-height:1em;
+    text-decoration:none;
+    background:@mainColour;
+    color:@textColour;
+    padding:0 20px;
+  }
+  > ul {
+    *display:inline-block;
+    > li > a {
+      line-height:48px;
+    }
+  }
+}
+#navbar:after, #navbar ul:after {
+  content:'';
+  display:block;
+  clear:both;
+}
+
+#imageFrame{
+  position: fixed;
+  background-repeat:no-repeat;
+  top: @navBarHeight;
+  z-index: -1;
+}
+
+#image{
+  min-height: 100%;
+  background-size: cover;
+}
+
+#standbyImage{
+  position: absolute;
+  background-size: 65px 65px;
+  height: 65px;
+  width: 65px;
+  top: 50%;
+  left: 50%;
+  margin-right: 32.5px;
+  margin-top: -32.5px;
+  z-index: -10;
+}
+
+#menuBar{
+  position: fixed;
+  top: @navBarHeight;
+  right: 0px;
+  width: @menuBarWidth+1em;
+  background-color: #f3edf8;
+  border-left:2px solid #03030b;
+  ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+    position:relative;
+    li{
+      height: (@menuBarWidth/2)-1em;
+      width: (@menuBarWidth/2)-1em;
+      padding: 0.5em;
+      float: left;
+    }
+  }
+}
+
+
+//Class statements
+
+.imageTile{
+  div{
+    position: absolute;
+    height: (@menuBarWidth/2)-1em;
+    width: (@menuBarWidth/2)-1em;
+
+    img{
+      height: 100%;
+      width: 100%;
+      border:1px solid #020b11;
+      border-radius: 10px;
+    }
+    span{
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      left: 1px;
+      top: 1px;
+      text-transform: uppercase;
+      padding: 3em 1em 0;
+      z-index: 100;
+      color: #ddd;
+      background: rgba(0,0,0,0.6);
+      font-weight: 700;
+      opacity: 0;
+      text-align:center;
+      box-sizing: border-box;
+      border-radius: 9px;
+      cursor: pointer;
+    }
+  }
+
+  &:hover{
+    span{
+      opacity: 1;
+    }
+    img{
+      opacity: 0.6;
+    }
+  }
+}
