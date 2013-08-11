@@ -21,7 +21,7 @@ import org.apache.commons.io.IOUtils;
 
 public class Global extends GlobalSettings {
 
-    private String DBUrl = "https://googledrive.com/host/0B51fxESCBfs-STV1My13c09zdVE/ImageDatabase.json";
+    private String DBUrl = "http://pastebin.com/raw.php?i=uVtfpZyL";
     private Locale dutchLoc = new Locale("nl", "NL");
 
     public String getDatabase() throws MalformedURLException, IOException{
@@ -30,6 +30,7 @@ public class Global extends GlobalSettings {
         try {
             String db = IOUtils.toString( in );
             return db;
+            //return ""
         } finally {
             IOUtils.closeQuietly(in);
         }
@@ -88,14 +89,14 @@ public class Global extends GlobalSettings {
                         img = new PieceImage();
                         img.name = (String) image.get("Name");
                         img.description = (String) image.get("Desc");
-                        img.focus = (String) image.get("FocusX")+"% "+(String)image.get("FocusY")+"%";
+                        img.focus = ((String) image.get("FocusX")+"% "+(String)image.get("FocusY")+"%").replace("=", "");
                         img.url = (String) image.get("Url");
                         imagesOfPiece.add(img);
                     }else{
                         img = imgCheck.get(0);
                         img.name = (String) image.get("Name");
                         img.description = (String) image.get("Desc");
-                        img.focus = (String) image.get("FocusX")+"% "+(String)image.get("FocusY")+"%";
+                        img.focus = ((String) image.get("FocusX")+"% "+(String)image.get("FocusY")+"%").replace("=", "");
                         imagesOfPiece.add(img);
                     }
                     //img.save();

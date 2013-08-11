@@ -2,8 +2,11 @@ package controllers;
 
 import models.Piece;
 import models.PieceImage;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+
+import play.Logger;
 import play.mvc.Controller;
 import play.mvc.Result;
 
@@ -19,7 +22,8 @@ public class Application extends Controller {
         );
     }
 
-    public static Result getItem(Long pieceId) {
+    @SuppressWarnings("unchecked")
+	public static Result getItem(Long pieceId) {
 
         Piece piece = Piece.find.byId(pieceId);
         JSONObject jsonPiece = new JSONObject();
@@ -32,7 +36,7 @@ public class Application extends Controller {
             PieceImage image = itr.next();
             JSONObject img = new JSONObject();
             img.put("name",image.name);
-            img.put("focus",image.focus);
+            img.put("focus",image.focus.replace("=", ""));
             img.put("url",image.url);
             images.add(img);
         }

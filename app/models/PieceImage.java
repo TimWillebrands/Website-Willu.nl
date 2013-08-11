@@ -5,6 +5,7 @@ import javax.persistence.*;
 import play.db.ebean.*;
 import play.data.validation.*;
 
+@SuppressWarnings("serial")
 @Entity
 public class PieceImage extends Model {
 

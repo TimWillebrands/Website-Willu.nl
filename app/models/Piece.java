@@ -2,12 +2,10 @@ package models;
 
 import javax.persistence.*;
 
-import play.Logger;
 import play.db.ebean.*;
 import play.data.validation.*;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,6 +16,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 
+@SuppressWarnings("serial")
 @Entity
 public class Piece extends Model{
 
@@ -37,6 +36,7 @@ public class Piece extends Model{
     @Constraints.Required
     public String addeddate;
 
+    @Constraints.Required
     public String thumbnail;
 
     @OneToMany(cascade=CascadeType.ALL)
