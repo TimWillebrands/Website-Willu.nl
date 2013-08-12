@@ -21,6 +21,25 @@ public class Application extends Controller {
                 views.html.werk.render(allPieces)
         );
     }
+    
+    public static Result getSubsite(String name){
+    	Logger.info(name);
+    	
+    	if(name.equals("Sieraden")){
+    		List<Piece> allPieces = Piece.find.all();
+            return ok(views.html.werk.render(allPieces));
+    	}else if(name.equals("Accessoires")){
+    		List<Piece> allPieces = Piece.find.all();
+            return ok(views.html.werk.render(allPieces));
+    	}else if(name.equals("Willu")){
+            return ok(views.html.willu.render());
+    	}else if(name.equals("Contact")){
+	        return ok(views.html.cont.render());
+		}
+    	
+    	List<Piece> allPieces = Piece.find.all();
+        return ok(views.html.werk.render(allPieces)); 
+    }
 
     @SuppressWarnings("unchecked")
 	public static Result getItem(Long pieceId) {
