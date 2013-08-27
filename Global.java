@@ -21,7 +21,7 @@ import org.apache.commons.io.IOUtils;
 
 public class Global extends GlobalSettings {
 
-    private String DBUrl = "http://pastebin.com/raw.php?i=uVtfpZyL";
+    private String DBUrl = "http://pastebin.com/raw.php?i=MdL3TeQg";
     private Locale dutchLoc = new Locale("nl", "NL");
 
     public String getDatabase() throws MalformedURLException, IOException{

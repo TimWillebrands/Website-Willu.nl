@@ -11,20 +11,19 @@
         	background-repeat: no-repeat">
         </div>
         <div id="standbyImage" style="background-image:url('@routes.Assets.at("images/loader.gif")');"></div>
+        
         <div id="imgDesc">
-        	<h1>@pieces.get(0).name</h1>
-        	<p>@pieces.get(0).description</p>
+        	<h1 id="descBtn">Klik hier om te openen/sluiten</h1>
         	<div id="imgMenu" class="horizontal">
-        		<!--<div class="overthrow content">-->
-        			<ul>
-		        		@for(index <- 0 until 10){
-		        		<li>
-		        			<img src="http://lorempixel.com/60/60/">
-		        		</li>	
-		                }	
-	                </ul>
-	           <!--</div>-->
+        		<ul>
+		        	@for(index <- 0 until 10){
+		        	<li>
+		        		<img src="http://lorempixel.com/60/60/">
+		        	</li>	
+		            }	
+	            </ul>
         	</div>	
+        	<p>@pieces.get(0).description</p>
         </div>
     </div>
 
@@ -34,7 +33,7 @@
                 @for(index <- 0 until pieces.size){
                 <li class="imageTile"><div class="menuButton" id="piece_@pieces.get(index).id"> <!--href="@pieces.get(index).id"-->
                     <img src="@pieces.get(index).thumbnail">
-                    <span>@pieces.get(index).name<br><br>@pieces.get(index).description</span>
+                    <span>@pieces.get(index).name</span>
                 </div></li>
                 }
             </ul>
@@ -63,21 +62,46 @@
 	        });
         }
         
-        replaceImage = function(imageObj) {
+        replaceImage = function(pieceObj,imageObj) {
         	mainImg.css('opacity', '0');
             mainImg.css('background-image', 'url(' + imageObj.url + ')');
             mainImg.css('background-position', imageObj.focus);
+            
+            $("#imgDesc p").text(pieceObj.desc);
+            $("#imgDesc h2").text(pieceObj.name);
+            
+            descDown(false);
 
             getBgImg(mainImg).on('load',function () {
             	mainImg.css('opacity', '1');
             });
         }
+        
+        descDown = function(animated){
+        	if(animated){
+        		$("#imgDesc").animate({bottom: 0,}, 700);
+        	}else{
+        		$("#imgDesc").css("bottom",(-($("#imgDesc").height() - $("#descBtn").height() -5)) + "px");
+        	}	
+        }
 
         $(".menuButton").click(function(){
             var id = $(this).attr('id');
             $.getJSON("/item/"+ id.replace('piece_', ''), function(piece) {
-                replaceImage(piece.images[0]);            
+                replaceImage(piece,piece.images[0]);            
             });
+        });
+        
+        var bounce = false;
+        $("#descBtn").click(function(){
+        	if(bounce){
+	        	var h = (-($("#imgDesc").height() - $("#descBtn").height() -5)) + "px";
+	        	$("#imgDesc").animate({bottom: h,}, 700);
+	        	bounce = false;
+        	}else{
+        		descDown(true);
+        		bounce = true;
+        	}
         });
 
         getBgImg(mainImg).on('load',function () {
@@ -91,8 +115,8 @@
             resize(menBar.outerWidth() , navBar.height());
         });
 
-        //$(".nano").nanoScroller({ alwaysVisible: true });
-        $(".horizontal").mCustomScrollbar({horizontalScroll:true});
+        descDown(false);
+        $(".horizontal").mCustomScrollbar({horizontalScroll:true,theme: "dark"});
         $(".vertical").mCustomScrollbar({theme: "dark"});
     </script>
 }

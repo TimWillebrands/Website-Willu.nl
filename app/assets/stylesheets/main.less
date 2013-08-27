@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Simonetta);
+@import url(http://fonts.googleapis.com/css?family=Spirax);
 
 
 //Global values
@@ -23,7 +24,7 @@
 //Mixin's
 
 .dosis (@textSize: 28px){
-  font-family:'Harrington', Tahoma, Arial, sans-serif;
+  font-family:'Harrington', 'Spirax', Tahoma, Arial, sans-serif;
   font-size:@textSize;
 }
 
@@ -37,8 +38,22 @@
   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
   box-sizing: border-box;         /* Opera/IE 8+ */
   margin: 0px;
-  width: 65%;
-  padding-left: 20px;
+}
+
+.rounded (@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.rounded-corners (@radiusNE: 5px,@radiusSE: 5px,@radiusSW: 5px,@radiusNW: 5px) {
+  -webkit-border-radius: @radiusNE @radiusSE @radiusSW @radiusNW ;
+  -moz-border-radius: @radiusNE @radiusSE @radiusSW @radiusNW ;
+  -ms-border-radius: @radiusNE @radiusSE @radiusSW @radiusNW ;
+  -o-border-radius: @radiusNE @radiusSE @radiusSW @radiusNW ;
+  border-radius: @radiusNE @radiusSE @radiusSW @radiusNW ;
 }
 
 //Normal statements
@@ -190,11 +205,35 @@ body{
       line-height: (@navBarHeight - @borderHeight)-(2 * @marginButtons);
     }
   }
+  
 }
 #navbar:after, #navbar ul:after {
   content:'';
   display:block;
   clear:both;
+}
+
+.tak{
+  position: absolute;
+  top: @navBarHeight - @borderHeight;
+  width: 120px;
+  height: 120px;
+  z-index: 255;
+}
+
+#tak1{
+  .tak;
+}
+
+#tak2{
+  .tak;
+  right: 0px;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
 }
 
 #imageFrame{
@@ -247,36 +286,48 @@ body{
 
 #imgDesc{
   position: absolute;
-  opacity: 0;
-  height: 8em;
-  //left: 1.5em;
-  right: 0px;
-  width: 80%;
-  //bottom: 1.5em;
+  //height: 8em;
+  left: 0.7em;
+  width: 25em;
   bottom: 0px;
-  //background: rgba(66, 66, 66, 0.40);
-  h1{ //Title of an item
-    background: @accentColour;
-    height: 25%;
+  background: @accentColour;
+  border: @borderHeight solid @accentColour2;
+  .rounded-corners(15px,15px,0px,0px);
+  h1{
+    .dosis(16px);
+    background: @mainColour;  
+    height:1.5em;
+    width:100%;
+    margin: 0;
+    text-align: center;
+    font-weight: normal;
+    color: @accentColour;
+    padding-top:5px;
+    .rounded-corners(11px,11px,0px,0px);
+  }
+  h2{ //Title of an item
     .sizeInsideImgDesc;
-    .dosis;
+    .dosis(14px);
+    background: @accentColour;
+    height: 1em;
+    width: 100%;
     font-weight: normal;
     color: @textColour;
+    text-align: center;
+    margin-bottom:10px;
   }
   p{ //Description of item
+    .openSans(16px);
     .sizeInsideImgDesc;
-    height: 75%;
+    width: 100%;
+    min-height: 2em;
     padding-top: 10px;
     padding-bottom: 10px;
-    background: lighten(@mainColour, 25%);
-    .openSans;
+    text-align: center;
   }
   #imgMenu{
-    position: absolute;
-    width: 35%;
-    height: 100%;
-    top: 0;
-    right: 0;
+    width: 100%;
+    height: 90px;
     background: @accentColour;
     ul{
       list-style:none;
@@ -302,10 +353,16 @@ body{
 
 
 //Class statements
+.textPage{
+  background-color: lighten(@accentColour,10%);
+  width:100%;
+  height:100%;
+}
+
 .textField{
   position: absolute;
   width: 60em;
-  left: 10%;
+  left: 10em;
   .openSans(16px);
 }
 

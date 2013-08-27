@@ -60,6 +60,8 @@ public class Application extends Controller {
             images.add(img);
         }
         jsonPiece.put("images",images);
+        
+        Logger.info(piece.name);
 
         return ok(jsonPiece.toJSONString());
     }
