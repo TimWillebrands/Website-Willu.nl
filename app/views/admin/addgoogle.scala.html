@@ -1,0 +1,39 @@
+@(drive: Boolean = false)
+
+<div id="drive-details">
+	<button id="reqPermBtn" type="button">Request drive permissions from google</button>
+</div>
+
+<div id='drive-hidden' style='visibility: hidden;' > 
+	<form>
+		<table>
+			<tr>
+				<td align="right">Foldername:</td>
+				<td align="left"><input type="text" id="foldername" /></td>
+			</tr>
+		</table>
+	</form>
+	
+	<button id="folderBtn" type="button">Get Folder</button><br>
+	
+	<div id="table-container"><form id="drive-form">
+	</form></div>
+	
+	<script src="@routes.Assets.at("javascripts/addgoogle.min.js")"></script>
+</div>
+
+<script>
+(function(drive){
+	if(drive){
+		$("#drive-details").remove();
+		$("#drive-hidden").removeAttr('style');
+	}
+
+	$("#reqPermBtn").click(function(){
+		$.post('/admin/getAuth' , function(url){
+			console.log(url);
+			document.location.href = url;
+		});
+	});
+})(@drive);
+</script>

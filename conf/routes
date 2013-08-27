@@ -3,10 +3,37 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.getSubsite(page = "sier")
+GET     /                           controllers.Application.home()
+GET     /Werk                       controllers.Application.direct(page = "werk")
+GET     /Diensten                   controllers.Application.direct(page = "dienst")
+GET     /Rave                       controllers.Application.direct(page = "rave")
+GET     /Contact                    controllers.Application.direct(page = "cont")
+
+# Ajax requests
 GET     /item/:id                   controllers.Application.getItem(id: Long)
-GET		/:page						controllers.Application.getSubsite(page)
+GET     /subsite/:site              controllers.Application.receiveSubsite(site: String)
+GET     /meta/:site                 controllers.Application.receiveMeta(site: String)
+
+# Admin stuff
+GET     /admin                      controllers.Admin.admin()
+POST    /admin/getAuth              controllers.Admin.getAuthCode()
+POST    /admin/addDbObject          controllers.Admin.addDbObject()
+POST    /admin/addJsonDb            controllers.Admin.addJsonDb()
+POST    /admin/getDrivePieces/:str  controllers.Admin.getDrivePieces(str: String)
+GET     /admin/getDbJson            controllers.Admin.getDbJson()
+POST    /admin/replaceDb            controllers.Admin.replaceDb()
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 #GET  	/images/*file  				controllers.Assets.at(path="/public/images", file)
+
+# Login page
+GET     /login                      securesocial.controllers.LoginPage.login
+GET     /logout                     securesocial.controllers.LoginPage.logout
+
+# Providers entry points
+GET     /authenticate/:provider     securesocial.controllers.ProviderController.authenticate(provider)
+POST    /authenticate/:provider     securesocial.controllers.ProviderController.authenticateByPost(provider)
+GET     /not-authorized             securesocial.controllers.ProviderController.notAuthorized
+GET     /oauth2callback             controllers.Admin.receiveAuthCode()

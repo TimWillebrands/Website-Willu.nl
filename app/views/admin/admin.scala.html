@@ -1,0 +1,32 @@
+@(drive: Boolean = false)
+
+<link rel="stylesheet" href="@routes.Assets.at("stylesheets/admin.css")">
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> 
+<script src="//cdnjs.cloudflare.com/ajax/libs/jeditable.js/1.7.3/jeditable.min.js"></script>
+  
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Add Image / Piece</a></li>
+    <li><a href="#tabs-2">Fill Database from Google Drive</a></li>
+    <li><a href="#tabs-3">Fill Database with Json</a></li>
+    <li><a href="#tabs-4">Edit Database</a></li>
+  </ul>
+  <div id="tabs-1">
+  	@addimg()
+  </div>
+  <div id="tabs-2">
+  	@addgoogle(drive)
+  </div>
+  <div id="tabs-3">
+  	@addjson()
+  </div>
+  <div id="tabs-4">
+  	@editdb()
+  </div>
+</div>
+
+<script src="@routes.Assets.at("javascripts/admin.js")"></script>
+<script>
+	History.pushState(null, null, "admin");
+	$(function() {$( "#tabs" ).tabs();});
+</script>

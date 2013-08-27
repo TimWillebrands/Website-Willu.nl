@@ -7,8 +7,8 @@ import cloudbees.Plugin._
 
 object ApplicationBuild extends Build {
 
-  val appName         = "Willu Website"
-  val appVersion      = "0.2"
+  val appName         = "Website"
+  val appVersion      = "0.1"
 
   val appDependencies = Seq(
     // Add your project dependencies here,
@@ -21,12 +21,13 @@ object ApplicationBuild extends Build {
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
 	  cloudBeesSettings :_*).settings(
-	      CloudBees.applicationId := Some("willu/web"),
-	      CloudBees.username := Some("willu"),
-	      CloudBees.apiKey := Some("17C8AE233DCE0056"),
-	      CloudBees.apiSecret := Some("YKW1LI1SHLZRQ7VJYQQAKXT/THLEKMORQSQKR1HX5TC="),
-	      CloudBees.host := "https://api-eu.cloudbees.com/api",
-	      CloudBees.deployParams := Map("runtime.java_version" -> "1.7"),
-	      CloudBees.openOnUpload := false
-	  )
+      CloudBees.applicationId := Some("rave/web"),
+      CloudBees.username := Some("rave5887"),
+      CloudBees.apiKey := Some("DD8E513F1DEEE470"),
+      CloudBees.apiSecret := Some("ZBRQXZV/ED1OLC1GUF7R34LJJEDD0CNPRMMXZORAHZC="),
+      CloudBees.host := "https://api-eu.cloudbees.com/api",
+      CloudBees.deployParams := Map("runtime.java_version" -> "1.7"),
+      CloudBees.openOnUpload := false)
+
+
 }
