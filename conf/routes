@@ -4,7 +4,7 @@
 
 # Home page
 GET     /                           controllers.Application.home()
-GET     /Werk                       controllers.Application.direct(page = "werk")
+GET     /Sieraden                   controllers.Application.direct(page = "werk")
 GET     /Accessoires                controllers.Application.direct(page = "acc")
 GET     /Willu                      controllers.Application.direct(page = "willu")
 GET     /Contact                    controllers.Application.direct(page = "cont")
