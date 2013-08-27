@@ -1,58 +1,75 @@
-@import url(http://fonts.googleapis.com/css?family=Dosis:400);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Simonetta);
+@import url(http://fonts.googleapis.com/css?family=Spirax);
 
 
 //Global values
 
-@menuBarWidth: 22em;
+@menuBarWidth: 13em;
+@menuBarItem: 12em;
 @navBarHeight: 52px;
+@marginButtons: 8px;
 @borderHeight: 4px;
 
-@mainColour: #333333;
-@accentColour: #05326D;
+@mainColour: #4E3B2C;
+@accentColour: #FCF2CF;
+@accentColour2: #9CBF4C;
 @hoverColour: lighten(@accentColour, 25%);
 @edgeColour: @accentColour;   //Kader om navbar knoppen
 //@edgeColour: #05326D;
 
-@textColour: #cbcbcb;
-@activeTextColour: #f6f6f6;
+@textColour: #060000;
+@activeTextColour: #060000;
 
 
 //Mixin's
 
-.dosis (@textSize: 18px){
-  font-family:'Dosis', Tahoma, Arial, sans-serif;
+.dosis (@textSize: 28px){
+  font-family:'Harrington', 'Spirax', Tahoma, Arial, sans-serif;
   font-size:@textSize;
 }
 
 .openSans (@textSize: 12px){
-  font-family:'Open Sans', Helvetica, Arial, sans-serif;
+  font-family:'Simonetta', cursive;
   font-size:@textSize;
 }
 
-.border-box (){
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; *behavior: url(../javascripts/boxsizing.htc);
+.sizeInsideImgDesc (){
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  margin: 0px;
 }
 
-.sizeInsideImgDesc (){
-  .border-box();
-  margin: 0px;
-  width: 65%;
-  padding-left: 20px;
+.rounded (@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.rounded-corners (@radiusNE: 5px,@radiusSE: 5px,@radiusSW: 5px,@radiusNW: 5px) {
+  -webkit-border-radius: @radiusNE @radiusSE @radiusSW @radiusNW ;
+  -moz-border-radius: @radiusNE @radiusSE @radiusSW @radiusNW ;
+  -ms-border-radius: @radiusNE @radiusSE @radiusSW @radiusNW ;
+  -o-border-radius: @radiusNE @radiusSE @radiusSW @radiusNW ;
+  border-radius: @radiusNE @radiusSE @radiusSW @radiusNW ;
 }
 
 //Normal statements
 
 body{
   margin: 0px;
-  .openSans(12px);
-  //overflow: hidden;
+  .dosis(12px);
 }
 
 
 //Id statements
+
+#content{
+  position: absolute;
+  top: @navBarHeight;
+}
 
 #navbar {
   position: fixed;
@@ -61,7 +78,7 @@ body{
   margin:0;
   border:0;
   background:@mainColour;
-  border-bottom:4px solid @accentColour;
+  border-bottom:4px solid @accentColour2;
   .dosis;
   ul {
     list-style:none;
@@ -69,14 +86,14 @@ body{
     padding:0;
     position:relative;
     z-index:597;
-    text-transform:uppercase;
+
     li.hover, li:hover {
       position:relative;
       z-index:599;
       cursor:default;
     }
-    li:hover > span, li.active > span {
-      background:@accentColour;
+    li:hover > a, li.active > a {
+      background:@accentColour2;
       color:@activeTextColour;
     }
     li {
@@ -107,22 +124,21 @@ body{
         right:-99.5%;
         border-top:0 none;
       }
-      span {
-        background:@accentColour;
+      a {
+        //background:@accentColour;
         color:@activeTextColour;
         border:1px solid @edgeColour;
         border-top:0 none;
         line-height:150%;
         padding:16px 20px;
-        cursor: pointer;
       }
-      li:first-child > span {
+      li:first-child > a {
         border-top:1px solid @edgeColour;
       }
-      li:hover > span {
+      li:hover > a {
         background:@hoverColour;
       }
-      li:last-child > span {
+      li:last-child > a {
         -moz-border-radius:0 0 3px 3px;
         -webkit-border-radius:0 0 3px 3px;
         border-radius:0 0 3px 3px;
@@ -133,7 +149,7 @@ body{
         -webkit-box-shadow:0 1px 0 @accentColour;
         box-shadow:0 1px 0 @accentColour;
       }
-      li:last-child:hover > span {
+      li:last-child:hover > a {
         -moz-border-radius:0 0 0 3px;
         -webkit-border-radius:0 0 0 3px;
         border-radius:0 0 0 3px;
@@ -141,7 +157,7 @@ body{
         -webkit-background-clip:padding-box;
         background-clip:padding-box;
       }
-      li.has-sub > span:after {
+      li.has-sub > a:after {
         content:'+';
         position:absolute;
         top:50%;
@@ -152,7 +168,7 @@ body{
     li:hover > ul {
       visibility:visible;
     }
-    li.has-sub > span:after {
+    li.has-sub > a:after {
       content:'+';
       margin-left:5px;
     }
@@ -170,21 +186,26 @@ body{
     margin:0;
     padding:0;
   }
-  span {
+  a {
     display:block;
     line-height:1em;
     text-decoration:none;
     background:@mainColour;
     color:@textColour;
     padding:0 20px;
-    cursor: pointer;
+    background-color: @accentColour;
+    border-radius: 14px;
+    padding: 0 20px;
+    margin: @marginButtons 0;
+    margin-left: 20px;
   }
   > ul {
     *display:inline-block;
-    > li > span {
-      line-height: @navBarHeight - @borderHeight;
+    > li > a {
+      line-height: (@navBarHeight - @borderHeight)-(2 * @marginButtons);
     }
   }
+  
 }
 #navbar:after, #navbar ul:after {
   content:'';
@@ -192,10 +213,33 @@ body{
   clear:both;
 }
 
+.tak{
+  position: absolute;
+  top: @navBarHeight - @borderHeight;
+  width: 120px;
+  height: 120px;
+  z-index: 255;
+}
+
+#tak1{
+  .tak;
+}
+
+#tak2{
+  .tak;
+  right: 0px;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
+
 #imageFrame{
   position: fixed;
   background-repeat:no-repeat;
-  top: @navBarHeight;
+  //top: @navBarHeight;
   z-index: -1;
 }
 
@@ -219,20 +263,21 @@ body{
 
 #menuBar{
   position: fixed;
-  top: @navBarHeight;
+  //top: @navBarHeight;
   right: 0px;
   width: @menuBarWidth+1em;
-  background: lighten(@mainColour,69%);
-  background-image:url('../images/noise.png');
-  border-left:4px solid lighten(@accentColour, 10%);
+  //background: lighten(@mainColour,69%);
+  background: @accentColour;
+  //background-image:url('../images/noise.png');
+  border-left:4px solid @accentColour2;
   ul{
     list-style:none;
     margin:0;
     padding:0;
     position:relative;
     li{
-      height: (@menuBarWidth/2)-1em;
-      width: (@menuBarWidth/2)-1em;
+      height: @menuBarItem;
+      width: @menuBarItem;
       padding: 0.5em;
       float: left;
     }
@@ -241,33 +286,48 @@ body{
 
 #imgDesc{
   position: absolute;
-  height: 8em;
-  left: 1.5em;
-  width: 80%;
-  bottom: 1.5em;
-  //background: rgba(66, 66, 66, 0.40);
-  h1{ //Title of an item
-    background: @accentColour;
-    height: 25%;
+  //height: 8em;
+  left: 0.7em;
+  width: 25em;
+  bottom: 0px;
+  background: @accentColour;
+  border: @borderHeight solid @accentColour2;
+  .rounded-corners(15px,15px,0px,0px);
+  h1{
+    .dosis(16px);
+    background: @mainColour;  
+    height:1.5em;
+    width:100%;
+    margin: 0;
+    text-align: center;
+    font-weight: normal;
+    color: @accentColour;
+    padding-top:5px;
+    .rounded-corners(11px,11px,0px,0px);
+  }
+  h2{ //Title of an item
     .sizeInsideImgDesc;
-    .dosis;
+    .dosis(14px);
+    background: @accentColour;
+    height: 1em;
+    width: 100%;
     font-weight: normal;
     color: @textColour;
+    text-align: center;
+    margin-bottom:10px;
   }
   p{ //Description of item
+    .openSans(16px);
     .sizeInsideImgDesc;
-    height: 75%;
+    width: 100%;
+    min-height: 2em;
     padding-top: 10px;
     padding-bottom: 10px;
-    background: lighten(@mainColour, 25%);
-    .openSans;
+    text-align: center;
   }
   #imgMenu{
-    position: absolute;
-    width: 35%;
-    height: 100%;
-    top: 0;
-    right: 0;
+    width: 100%;
+    height: 90px;
     background: @accentColour;
     ul{
       list-style:none;
@@ -291,27 +351,35 @@ body{
   }
 }
 
-#content{
-  position: absolute;
-  width:100%;
-  top: @navBarHeight;
-  z-index: -1;
-}
-
 
 //Class statements
+.textPage{
+  background-color: lighten(@accentColour,10%);
+  width:100%;
+  height:100%;
+}
 
+.textField{
+  position: absolute;
+  width: 60em;
+  left: 10em;
+  .openSans(16px);
+}
+
+@bendCorner: 10px;
 .imageTile{
+  
+  
   div{
     position: absolute;
-    height: (@menuBarWidth/2)-1em;
-    width: (@menuBarWidth/2)-1em;
+    height: @menuBarItem;
+    width: @menuBarItem;
 
     img{
       height: 100%;
       width: 100%;
-      border:1px solid #020b11;
-      //border-radius: 10px;
+      //border:1px solid @mainColour;
+      border-radius: @bendCorner;
     }
     span{
       position: absolute;
@@ -319,17 +387,16 @@ body{
       width: 100%;
       left: 1px;
       top: 1px;
-      text-transform: uppercase;
       padding: 3em 1em 0;
       z-index: 100;
       color: #ddd;
       background: rgba(0,0,0,0.6);
-      font-weight: 700;
       opacity: 0;
       text-align:center;
-      .border-box();
-      //border-radius: 9px;
+      box-sizing: border-box;
+      border-radius: @bendCorner - 1px;
       cursor: pointer;
+      font-size: 18px;
     }
   }
 

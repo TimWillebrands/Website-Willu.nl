@@ -42,11 +42,11 @@ public class Application extends Controller {
         	if(allPieces.isEmpty())
         		allPieces.add(createExamplePiece());
             return views.html.werk.render(allPieces);
-        }else if(subSiteName.equalsIgnoreCase("dienst")){
+        }else if(subSiteName.equalsIgnoreCase("acc")){
         	List<Piece> allPieces = Piece.find.all();
-            return views.html.dienst.render();
-        }else if(subSiteName.equalsIgnoreCase("rave")){
-            return views.html.rave.render();
+            return views.html.acc.render();
+        }else if(subSiteName.equalsIgnoreCase("willu")){
+            return views.html.willu.render();
         }else if(subSiteName.equalsIgnoreCase("cont")){
             return views.html.cont.render();
         }
@@ -59,10 +59,10 @@ public class Application extends Controller {
     public static Html getMeta(String subSiteName){
         if(subSiteName.equalsIgnoreCase("werk")){
             return views.html.meta.werk.render();
-        }else if(subSiteName.equalsIgnoreCase("dienst")){
-            return views.html.meta.dienst.render();
-        }else if(subSiteName.equalsIgnoreCase("rave")){
-            return views.html.meta.rave.render();
+        }else if(subSiteName.equalsIgnoreCase("acc")){
+            return views.html.meta.acc.render();
+        }else if(subSiteName.equalsIgnoreCase("willu")){
+            return views.html.meta.willu.render();
         }else if(subSiteName.equalsIgnoreCase("cont")){
             return views.html.meta.cont.render();
         }

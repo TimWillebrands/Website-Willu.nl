@@ -55,7 +55,7 @@ import java.util.Set;
 import java.util.concurrent.Callable;
 
 public class Admin extends Controller{
-	static String admin = "tim.willebrands@gmail.com";
+	static String admin = "rianne.huijs@gmail.com";
 	static GoogleDriveHandler driveHandler;
 	static Boolean driveHandlerSet = false;
 	

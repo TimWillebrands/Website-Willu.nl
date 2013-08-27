@@ -38,7 +38,7 @@ replaceImage = function(pieceObj,imageObj) {
 
 descDown = function(animated){
 	if(animated){
-		$("#imgDesc").animate({bottom: 0,}, 700);
+		$("#imgDesc").animate({bottom: 0}, 700);
 	}else{
 		$("#imgDesc").css("bottom",(-($("#imgDesc").height() - $("#descBtn").height() -5)) + "px");
 	}	
@@ -58,7 +58,7 @@ $("#descBtn").click(function(){
 	if(bounce){
     	bounce = false;
     	var h = (-($("#imgDesc").height() - $("#descBtn").height() -5)) + "px";
-    	$("#imgDesc").animate({bottom: h,}, 700);
+    	$("#imgDesc").animate({bottom: h}, 700);
 	}else{
 		descDown(true);
 		bounce = true;
