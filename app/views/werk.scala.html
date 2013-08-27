@@ -9,30 +9,34 @@
     	background-repeat: no-repeat">
     </div>
     <div id="standbyImage" style="background-image:url('@routes.Assets.at("images/loader.gif")');"></div>
-	<div id="imgDesc">
-		<h1>@pieces.get(0).name</h1>
-		<p class="vertical">@pieces.get(0).description</p>
-		<div id="imgMenu" class="horizontal">
-			<ul>
-	    		@for(index <- 0 until 10){
-	    		<li>
-	    			<img src="http://lorempixel.com/60/60/">
-	    		</li>	
+    
+    <div id="imgDesc">
+    	<h1 id="descBtn">Klik hier om te openen/sluiten</h1>
+    	<div id="imgMenu" class="horizontal">
+    		<ul>
+	        	@for(index <- 0 until 10){
+	        	<li>
+	        		<img src="http://lorempixel.com/60/60/">
+	        	</li>	
 	            }	
-	        </ul>
-		</div>	
-	</div>
+            </ul>
+    	</div>	
+    	<p>@pieces.get(0).description</p>
+    </div>
 </div>
 
 <div id="menuBar" class="vertical">
-    <ul>
-        @for(index <- 0 until pieces.size){
-        <li class="imageTile"><div class="menuButton" id="piece_@pieces.get(index).id"> <!--href="@pieces.get(index).id"-->
-            <img src="@pieces.get(index).thumbnail">
-            <span>@pieces.get(index).name<br><br>@pieces.get(index).description</span>
-        </div></li>
-        }
-    </ul>
+    <!--<div class="overthrow content">-->
+        <ul>
+            @for(index <- 0 until pieces.size){
+            <li class="imageTile"><div class="menuButton" id="piece_@pieces.get(index).id"> <!--href="@pieces.get(index).id"-->
+                <img src="@pieces.get(index).thumbnail">
+                <span>@pieces.get(index).name</span>
+            </div></li>
+            }
+        </ul>
+    <!--</div>-->
 </div>
 
+<script>$(".active").removeClass("active"); $("#werk").parent().addClass("active");</script>
 <script type="text/javascript" src= '@routes.Assets.at("javascripts/werk.min.js")'></script>
