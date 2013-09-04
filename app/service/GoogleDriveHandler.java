@@ -37,10 +37,10 @@ public class GoogleDriveHandler {
 	
 	private static String CLIENT_ID = "595172328396-t7na0jpiga8nu0pbn3ju81qkt18svt74.apps.googleusercontent.com";
 	private static String CLIENT_SECRET = "LB1aYiBXch1ywpyTcxT1aoN2";
-	private static String REDIRECT_URI = "http://web.rave.eu.cloudbees.net/oauth2callback";//production mode
+	private static String REDIRECT_URI = "http://web.willu.eu.cloudbees.net/oauth2callback";//production mode
 	
 	private static void setRedirectUri(){
-		REDIRECT_URI = Play.isDev() ? "http://localhost:8080/oauth2callback" : "http://web.rave.eu.cloudbees.net/oauth2callback";
+		REDIRECT_URI = Play.isDev() ? "http://localhost:8080/oauth2callback" : "http://web.willu.eu.cloudbees.net/oauth2callback";
 	}
 	
 	public static String getAuthUrl(){
@@ -185,8 +185,14 @@ public class GoogleDriveHandler {
     }
 
     private String getField(String str,String fieldName){
-        int start = str.lastIndexOf(";"+fieldName+"=");
-        return str.substring(start+fieldName.length()+2 , str.indexOf(';',start+1));
+    	String returnval;
+    	try{
+            int start = str.lastIndexOf(";"+fieldName+"=");
+            returnval = str.substring(start+fieldName.length()+2 , str.indexOf(';',start+1));
+    	}catch(java.lang.StringIndexOutOfBoundsException ex){
+    		returnval = "MISLUKS :O";
+    	}
+    	return returnval;
     }
 
     @SuppressWarnings("unchecked")
@@ -211,6 +217,8 @@ public class GoogleDriveHandler {
                         File childFile = drive.files().get(child.getId()).execute();
 
                         String ext = childFile.getFileExtension();
+                        
+                        Logger.info(childFile.getTitle());
 
                         if (childFile.getTitle().equals("conf.json")){
                             JSONObject jsonObject = (JSONObject) parser.parse(downloadFileContent(childFile));
