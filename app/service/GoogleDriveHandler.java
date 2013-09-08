@@ -222,7 +222,7 @@ public class GoogleDriveHandler {
 
                         if (childFile.getTitle().equals("conf.json")){
                             JSONObject jsonObject = (JSONObject) parser.parse(downloadFileContent(childFile));
-
+  
                             jsonPiece.put("Name",jsonObject.get("name"));
                             jsonPiece.put("Kind",jsonObject.get("kind"));
                             jsonPiece.put("Date",jsonObject.get("date"));
