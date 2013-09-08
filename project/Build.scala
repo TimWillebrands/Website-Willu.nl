@@ -7,8 +7,8 @@ import cloudbees.Plugin._
 
 object ApplicationBuild extends Build {
 
-  val appName         = "Website"
-  val appVersion      = "0.2"
+  val appName         = "WilluWebsite"
+  val appVersion      = "0.4"
 
   val appDependencies = Seq(
     // Add your project dependencies here,
