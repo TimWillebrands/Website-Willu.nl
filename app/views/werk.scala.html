@@ -13,12 +13,7 @@
     <div id="imgDesc">
     	<h1 id="descBtn">Klik hier om te openen/sluiten</h1>
     	<div id="imgMenu" class="horizontal">
-    		<ul>
-	        	@for(index <- 0 until 10){
-	        	<li>
-	        		<img src="http://lorempixel.com/60/60/">
-	        	</li>	
-	            }	
+    		<ul>	
             </ul>
     	</div>	
     	<p>@pieces.get(0).description</p>
@@ -39,4 +34,4 @@
 </div>
 
 <script>$(".active").removeClass("active"); $("#werk").parent().addClass("active");</script>
-<script type="text/javascript" src= '@routes.Assets.at("javascripts/werk.min.js")'></script>
+<script type="text/javascript" src= '@routes.Assets.at("javascripts/werk.js")'></script>

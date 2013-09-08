@@ -190,7 +190,7 @@ public class GoogleDriveHandler {
             int start = str.lastIndexOf(";"+fieldName+"=");
             returnval = str.substring(start+fieldName.length()+2 , str.indexOf(';',start+1));
     	}catch(java.lang.StringIndexOutOfBoundsException ex){
-    		returnval = "MISLUKS :O";
+    		returnval = "MISLUKS: StringIndexOutOfBoundsException :O";
     	}
     	return returnval;
     }

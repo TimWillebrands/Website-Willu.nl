@@ -36,15 +36,27 @@ public class Application extends Controller {
         return ok( getMeta(subsite) );
     }
 
-    public static Html getSubsite(String subSiteName) {
+    public static Html getSubsite(String subSiteName) {    	
         if(subSiteName.equalsIgnoreCase("werk")){
-        	List<Piece> allPieces = Piece.find.all();
+        	List<Piece> allPieces = Piece.find
+                    .where()
+                    .eq("kind","sier")
+                    .findList();
+                    
         	if(allPieces.isEmpty())
-        		allPieces.add(createExamplePiece());
+        		allPieces.add(createExamplePiece("sier"));
+        	
             return views.html.werk.render(allPieces);
         }else if(subSiteName.equalsIgnoreCase("acc")){
-        	List<Piece> allPieces = Piece.find.all();
-            return views.html.acc.render();
+        	List<Piece> allPieces = Piece.find
+                    .where()
+                    .eq("kind","acc")
+                    .findList();
+                    
+        	if(allPieces.isEmpty())
+        		allPieces.add(createExamplePiece("acc"));
+        	
+            return views.html.werk.render(allPieces);
         }else if(subSiteName.equalsIgnoreCase("willu")){
             return views.html.willu.render();
         }else if(subSiteName.equalsIgnoreCase("cont")){
@@ -95,13 +107,13 @@ public class Application extends Controller {
         return ok(jsonPiece.toJSONString());
     }
   
-    private static Piece createExamplePiece(){
+    private static Piece createExamplePiece(String kind){
 		Piece piece = new Piece();
 		List<PieceImage> sampleImages = new ArrayList<>();
         piece.name = "Example";
         piece.addeddate = "xx-xx-xx";
         piece.description = "This is just an example for when the database is empty, go to the admin screen and remove it from the db";
-        piece.kind = "Ring";
+        piece.kind = kind;
         piece.thumbnail = "http://www.colourbox.com/preview/4207474-183718-sample-stamp-shows-example-symbol-or-taste.jpg";
         PieceImage img = new PieceImage();
         img.name = "Sample image";
