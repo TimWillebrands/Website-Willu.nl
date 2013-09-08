@@ -119,7 +119,7 @@ public class Application extends Controller {
         img.name = "Sample image";
         img.description = "And example of an image";
         img.focus = "50% 50%";
-        img.url = "http://akhil.solutionsforstartup.com/wp-content/uploads/2013/07/sample.jpg";
+        img.setUrl("http://akhil.solutionsforstartup.com/wp-content/uploads/2013/07/sample.jpg");
         sampleImages.add(img);
         piece.images = sampleImages;
         piece.save();

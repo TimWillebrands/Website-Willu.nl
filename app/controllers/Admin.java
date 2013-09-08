@@ -193,7 +193,7 @@ public class Admin extends Controller{
                 }catch(NullPointerException ex){
                 	img.focus = image.get("Focus").getTextValue();
                 }
-                img.url = image.get("Url").getTextValue().replace("&amp;", "&");
+                img.setUrl(image.get("Url").getTextValue().replace("&amp;", "&"));
                 
                 //img.save();
                 imagesOfPiece.add(img);

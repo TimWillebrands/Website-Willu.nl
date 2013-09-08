@@ -327,36 +327,33 @@ body{
     text-align: center;
   }
   #imgMenu{
+    position: relative;
     width: 100%;
     height: 90px;
     background: @accentColour;
-    ul{
-      list-style:none;
-      margin:0;
-      padding:0;
-      position:relative;
-      text-align:left;
-      white-space:nowrap;
-      //font-size:0;
-      li{
-        margin: 0.5em;
-        margin-top: 0.9em;
-        display:inline-block;
-        &:first-child{
-          margin-left: 1em;
-        }
-        &:last-child{
-          margin-right: 1em;
-        }
-        img{
-          height: 5em;
-          &:hover{
-            .border-box;
-            border:2px solid @mainColour;
-          }
-        }
+    div{
+      white-space: nowrap;
+    }
+    img{
+      margin: 0.5em;
+      margin-top: 1em;
+      display: block;
+      //float: left;
+      display:inline-block;
+      height: 60px;
+      width: 90px;
+      &:first-child{
+        margin-left: 1em;
       }
-    }  
+      &:last-child{
+        margin-right: 1em;
+      }
+      &:hover{
+        .border-box;
+        border:2px solid @mainColour;
+      }
+      
+    } 
   }
 }
 

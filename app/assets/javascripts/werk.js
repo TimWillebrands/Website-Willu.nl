@@ -74,14 +74,24 @@ changePiece = function(pieceId,imgId) { // int, int
 		replaceImage(curentPiece.images[curentPiece.imgId]);
 	}
 	
-    $('#imgDesc h1').html( curentPiece.name );
+    $('#imgDesc h2').html( curentPiece.name );
     $('#imgDesc p').html( curentPiece.desc );
-    $('#imgMenu ul').empty();
+    $('#imgMenuContainer').empty();
+    
+    var totalImgsWidth = 0;
     
     for(var i = 0; i < curentPiece.images.length; i++){
-    	$('#imgMenu ul').append('<li><img class="imgMenuImage" id="imgId_' +i+'" src="'+ curentPiece.images[i].url +'" height="60" ></li>');
+    	var newImg = $( '<img class="imgMenuImage" id="imgId_' +i+'" src="/assets/images/thumbnail_'+ curentPiece.images[i].name +'.png" height="60" >' )
+    	$('#imgMenuContainer').append(newImg);
+    	
+    	newImg.load(function(){
+    		totalImgsWidth += newImg.outerWidth(true);
+	    	if(i===curentPiece.images.length){
+	    	    $("#imgMenu div .mCSB_container").css("width",totalImgsWidth);
+	    	    $("#imgMenu").mCustomScrollbar("update");
+	    	}
+    	});
     }
-    $("#imgMenu").mCustomScrollbar("update");
 }
 
 //Binding events and other script logic
@@ -115,7 +125,7 @@ $(".active").removeClass("active");
 $("#werk").parent().addClass("active");
 
 resize(menBar.outerWidth() , navBar.height());
+$("#imgMenu").mCustomScrollbar({horizontalScroll:true,theme:"dark",scrollInertia:250});
 changePiece($(".menuButton").first().attr('id').replace('piece_', ''));
 descDown(false);
-$("#imgMenu").mCustomScrollbar({horizontalScroll:true,theme:"dark"});
 $(".vertical").mCustomScrollbar({theme:"dark"});

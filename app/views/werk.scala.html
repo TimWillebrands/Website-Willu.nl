@@ -12,9 +12,12 @@
     
     <div id="imgDesc">
     	<h1 id="descBtn">Klik hier om te openen/sluiten</h1>
-    	<div id="imgMenu" class="horizontal">
-    		<ul>	
-            </ul>
+    	<div id="imgMenu">
+    		<div id="imgMenuContainer">
+    			@for(index <- 0 until 4){ <!-- Reall ugly hack to make custom scrollbar work -->
+	            	<img src="http://lorempixel.com/90/60" height="60" width="90" />
+	            }
+    		</div>	
     	</div>	
     	<p>@pieces.get(0).description</p>
     </div>
