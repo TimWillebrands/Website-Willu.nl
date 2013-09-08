@@ -49,11 +49,11 @@ public class PieceImage extends Model {
             	BufferedImage image =null;
                 try{
                    image = ImageIO.read(new URL(url));
-                   File fold=new File("public/images/thumbnail_"+name+".png");
+                   File fold=new File("public/images/thumbnails/thumbnail_"+name+".png");
                    fold.delete();
                    Thumbnails.of(image)
         		       .size(60, 60)
-        		       .toFile("public/images/thumbnail_"+name+".png");
+        		       .toFile("public/images/thumbnails/thumbnail_"+name+".png");
                 }catch(IOException e){
                     e.printStackTrace();
                 }

@@ -77,11 +77,12 @@ changePiece = function(pieceId,imgId) { // int, int
     $('#imgDesc h2').html( curentPiece.name );
     $('#imgDesc p').html( curentPiece.desc );
     $('#imgMenuContainer').empty();
-    
+
+	descDown(false);
     var totalImgsWidth = 0;
     
     for(var i = 0; i < curentPiece.images.length; i++){
-    	var newImg = $( '<img class="imgMenuImage" id="imgId_' +i+'" src="/assets/images/thumbnail_'+ curentPiece.images[i].name +'.png" height="60" >' )
+    	var newImg = $( '<img class="imgMenuImage" id="imgId_' +i+'" src="/assets/images/thumbnails/thumbnail_'+ curentPiece.images[i].name +'.png" height="60" >' )
     	$('#imgMenuContainer').append(newImg);
     	
     	newImg.load(function(){
@@ -127,5 +128,5 @@ $("#werk").parent().addClass("active");
 resize(menBar.outerWidth() , navBar.height());
 $("#imgMenu").mCustomScrollbar({horizontalScroll:true,theme:"dark",scrollInertia:250});
 changePiece($(".menuButton").first().attr('id').replace('piece_', ''));
-descDown(false);
 $(".vertical").mCustomScrollbar({theme:"dark"});
+descDown(false);
