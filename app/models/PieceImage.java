@@ -2,6 +2,7 @@ package models;
 
 import javax.persistence.*;
 
+import play.Logger;
 import play.db.ebean.*;
 import play.data.validation.*;
 
@@ -55,8 +56,10 @@ public class PieceImage extends Model {
                    Thumbnails.of(image)
         		       .size(60, 60)
         		       .toFile("public/images/thumbnails/thumbnail_"+name+".png");
+                }catch(java.io.FileNotFoundException e){
+                    Logger.info("FileNotFoundException");
                 }catch(IOException e){
-                    e.printStackTrace();
+                    Logger.info("IOException");
                 }
             }
         }).start();
