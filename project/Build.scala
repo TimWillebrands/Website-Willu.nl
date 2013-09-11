@@ -24,8 +24,8 @@ object ApplicationBuild extends Build {
 	  cloudBeesSettings :_*).settings(
       CloudBees.applicationId := Some("willu/web"),
       CloudBees.username := Some("willu"),
-      CloudBees.apiKey := Some("DD8E513F1DEEE470"),
-      CloudBees.apiSecret := Some("ZBRQXZV/ED1OLC1GUF7R34LJJEDD0CNPRMMXZORAHZC="),
+      CloudBees.apiKey := Some("17C8AE233DCE0056"),
+      CloudBees.apiSecret := Some("YKW1LI1SHLZRQ7VJYQQAKXT/THLEKMORQSQKR1HX5TC="),
       CloudBees.host := "https://api-eu.cloudbees.com/api",
       CloudBees.deployParams := Map("runtime.java_version" -> "1.7"),
       CloudBees.openOnUpload := false).settings(
