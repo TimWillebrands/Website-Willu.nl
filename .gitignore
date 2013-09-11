@@ -41,3 +41,17 @@ local.properties
 # PDT-specific
 .buildpath
 conf/evolutions/default/1.sql
+public/images/thumbnails/thumbnail_12R2.png
+public/images/thumbnails/thumbnail_13A1.png
+public/images/thumbnails/thumbnail_13A12.png
+public/images/thumbnails/thumbnail_13b1.png
+public/images/thumbnails/thumbnail_13C1.png
+public/images/thumbnails/thumbnail_13P1.png
+public/images/thumbnails/thumbnail_13P12.png
+public/images/thumbnails/thumbnail_13P13.png
+public/images/thumbnails/thumbnail_13R0.png
+public/images/thumbnails/thumbnail_13R1.png
+public/images/thumbnails/thumbnail_13R12.png
+public/images/thumbnails/thumbnail_13R4.png
+public/images/thumbnails/thumbnail_13T1.png
+public/images/thumbnails/thumbnail_13T2.png
