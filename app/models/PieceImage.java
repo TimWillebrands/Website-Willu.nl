@@ -49,11 +49,9 @@ public class PieceImage extends Model {
             	BufferedImage image =null;
                 try{
                    image = ImageIO.read(new URL(url));
-                   try{
-	                   File fold=new File("public/images/thumbnails/thumbnail_"+name+".png");
-	                   fold.delete();
-                   }catch(java.io.FileNotFoundException ex){
-                   }
+	               File fold=new File("public/images/thumbnails/thumbnail_"+name+".png");
+	               if(fold.exists())
+	            	   fold.delete();
                    Thumbnails.of(image)
         		       .size(60, 60)
         		       .toFile("public/images/thumbnails/thumbnail_"+name+".png");
