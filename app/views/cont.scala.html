@@ -16,4 +16,18 @@
 	
 </div>
 
-<script>$(".active").removeClass("active"); $("#cont").parent().addClass("active");</script>
+<script>
+	$(".active").removeClass("active"); $("#cont").parent().addClass("active");
+	
+	resize = function(h){$(".textField").css("height",h-52+"px");}
+	
+	
+	$("#content").css("width","100%");
+	$("#content").css("top","100px");
+	$("body").css("overflow","hidden");
+	$(window).resize(function() {
+	    resize($(window).height());
+	});
+	resize($(window).height());
+	$(".textField").mCustomScrollbar({theme:"dark"});
+</script>
