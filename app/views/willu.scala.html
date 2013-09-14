@@ -1,10 +1,41 @@
 <div class="textPage">
 	<div class="textField">
 		
+		<p style="margin-top: 0;">
+			Welkom op de website van Willu! 
+		</p>
 		<p>
-		Hier komt informatie over Willu	
+			Mijn naam is Rianne Huijs en ik ben de eigenaar van Willu. 
+			Ik ben goudsmid en leerbewerker en met die kennis maak ik vele soorten sieraden en accessoires. 
+			Uniek, creatief handwerk vind ik belangrijk en staat daarom centraal bij Willu. 
+			Met ideeën kun je altijd bij mij terecht en samen komen we tot een goed ontwerp en een goede prijs. 
+			Ik heb ook een hoop eigen ontwerpen liggen die direct te koop zijn of op aanvraag kunnen worden gemaakt. 
+			Nieuwsgierig naar wat ik nog heb liggen en de prijzen? Je mag altijd contact met me opnemen! 
+			Wellicht ben ik ook wel binnenkort bij u in de buurt! 
+			Ik sta op beurzen en geef soms een openhuis bij familie of vrienden. 
+			Onder dit verhaaltje staat een lijst met de komende activiteiten. 
+			Je bent altijd van harte welkom!
 		
+		</p>
+		
+	</div>
+	<div style="float: right;position: relative;right: 20em;width: 15%;">
+		<img id="ownerImage" src="http://farm8.staticflickr.com/7427/9740997296_673af9e1da.jpg" width="333" height="500" alt="Rianne Huijs">
 	</div>
 </div>
 
-<script>$(".active").removeClass("active"); $("#willu").parent().addClass("active");</script>
+<script>
+	$(".active").removeClass("active"); $("#willu").parent().addClass("active");
+	
+	resize = function(h){$(".textField").css("height",h-52+"px");}
+	
+	
+	$("#content").css("width","100%");
+	$("#content").css("top","100px");
+	$("body").css("overflow","hidden");
+	$(window).resize(function() {
+	    resize($(window).height());
+	});
+	resize($(window).height());
+	$(".textField").mCustomScrollbar({theme:"dark"});
+</script>
