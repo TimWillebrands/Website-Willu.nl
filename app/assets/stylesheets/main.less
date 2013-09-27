@@ -65,6 +65,8 @@
 body{
   margin: 0px;
   .dosis(12px);
+  background-color: lighten( @accentColour, 10% );
+ //] text-align:center;
 }
 
 
@@ -73,6 +75,13 @@ body{
 #content{
   position: absolute;
   top: @navBarHeight;
+}
+
+#eventTable{
+  text-align: left;
+  td{
+    padding-right: 1em;
+  }
 }
 
 #navbar {
@@ -216,6 +225,14 @@ body{
   content:'';
   display:block;
   clear:both;
+}
+
+#logo{
+  position: fixed;
+  top: @borderHeight;
+  right: 130px;
+  height: 100px;
+  z-index: 256;
 }
 
 #tak1{
@@ -370,11 +387,14 @@ body{
 }
 
 .textField{
-  position: absolute;
+  //position: absolute;
   width: 50%;
-  left: 6em;
+  //left: 6em;
   text-align: center;
   .openSans(16px);
+  a{
+    color:darken(@accentColour2,15%);
+  }
 }
 
 @bendCorner: 10px;
