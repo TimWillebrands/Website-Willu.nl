@@ -38,11 +38,10 @@ public class GoogleDriveHandler {
 	private static String CLIENT_ID = "595172328396-t7na0jpiga8nu0pbn3ju81qkt18svt74.apps.googleusercontent.com";
 	private static String CLIENT_SECRET = "LB1aYiBXch1ywpyTcxT1aoN2";
 	//private static String REDIRECT_URI = "http://web.willu.eu.cloudbees.net/oauth2callback";//production mode
-	private static String REDIRECT_URI = "http://h2213761.stratoserver.net:9000/oauth2callback";//production mode
+	private static String REDIRECT_URI = "http://willu.nl/oauth2callback";//production mode
 	
 	private static void setRedirectUri(){
-		//REDIRECT_URI = Play.isDev() ? "http://localhost:8080/oauth2callback" : "http://web.willu.eu.cloudbees.net/oauth2callback";
-		REDIRECT_URI = Play.isDev() ? "http://localhost:8080/oauth2callback" : "http://h2213761.stratoserver.net:9000/oauth2callback";
+		REDIRECT_URI = Play.isDev() ? "http://localhost:8080/oauth2callback" : "http://willu.nl/oauth2callback";
 	}
 	
 	public static String getAuthUrl(){
