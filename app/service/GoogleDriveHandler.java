@@ -35,8 +35,8 @@ public class GoogleDriveHandler {
 	private static HttpTransport httpTransport = null;
 	private static JsonFactory jsonFactory = null;
 	
-	private static String CLIENT_ID = "595172328396-t7na0jpiga8nu0pbn3ju81qkt18svt74.apps.googleusercontent.com";
-	private static String CLIENT_SECRET = "LB1aYiBXch1ywpyTcxT1aoN2";
+	private static String CLIENT_ID = "41939491553-hq6d0nrg89ivfu2fco6llfkoib4dbvei.apps.googleusercontent.com";
+	private static String CLIENT_SECRET = "mAjsfwBcc-Fr3DEiNMj0xK-P";
 	//private static String REDIRECT_URI = "http://web.willu.eu.cloudbees.net/oauth2callback";//production mode
 	private static String REDIRECT_URI = "http://willu.nl/oauth2callback";//production mode
 	
