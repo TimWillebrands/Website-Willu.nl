@@ -17,7 +17,7 @@ object ApplicationBuild extends Build {
     javaEbean,
     "mysql" % "mysql-connector-java" % "5.1.18",
     "postgresql" % "postgresql" % "9.1-901-1.jdbc4",
-    "securesocial" %% "securesocial" % "master-SNAPSHOT"
+    "securesocial" %% "securesocial" % "2.1.1"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(defaultJavaSettings:_*).settings(
