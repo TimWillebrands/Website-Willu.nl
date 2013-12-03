@@ -8,6 +8,5 @@ resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/release
 addSbtPlugin("play" % "sbt-plugin" % "2.1.3")
 
 resolvers += "Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
-resolvers += "SocialSecure" at "http://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/"
 
 addSbtPlugin("com.cloudbees.deploy.play" % "sbt-cloudbees-play-plugin" % "0.5-SNAPSHOT")
