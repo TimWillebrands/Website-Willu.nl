@@ -28,6 +28,11 @@ public class Application extends Controller {
         return ok( views.html.main.render(getSubsite(subsite),getMeta(subsite)) );
     }
 
+    public static Result directToImage(String subsite,String imageId) {
+    	System.out.println(imageId);
+        return ok( views.html.main.render(getSubsite(subsite),getMeta(subsite)) );
+    }
+
     public static Result receiveSubsite(String subsite) {
         return ok( getSubsite(subsite) );
     }
@@ -106,6 +111,8 @@ public class Application extends Controller {
 
         return ok(jsonPiece.toJSONString());
     }
+    
+    
   
     private static Piece createExamplePiece(String kind){
 		Piece piece = new Piece();
