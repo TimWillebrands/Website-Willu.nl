@@ -111,7 +111,7 @@ public class Application extends Controller {
     
     
   
-    private static Piece createExamplePiece(String kind){
+    protected static Piece createExamplePiece(String kind){
 		Piece piece = new Piece();
 		List<PieceImage> sampleImages = new ArrayList<>();
         piece.name = "Example";

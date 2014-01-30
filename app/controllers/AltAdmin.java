@@ -7,6 +7,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import models.Piece;
+import play.Logger;
 import play.mvc.Controller;
 import play.mvc.Result;
 
@@ -74,18 +75,19 @@ public class AltAdmin  extends Controller {
 	@SuppressWarnings("unchecked")
 	public static Result addPiece(){
 		if(Integer.parseInt(ctx().request().body().asFormUrlEncoded().get("password")[0]) == passHash){
-			Piece piece = new Piece();
+			Piece piece = Application.createExamplePiece("sier");
 			
 			/*try {
 				piece.updateWithJson((JSONObject) parser.parse(ctx().request().body().asText()));
 			} catch (ParseException e) {
 				Logger.error(e.getLocalizedMessage());
 			}*/
-			
 			JSONObject pieceJson = piece.getJson();
 			pieceJson.put("itemId", piece.id.toString());
 			
-			return ok(pieceJson.toJSONString());
+			Logger.info(pieceJson.get("itemId").toString());
+			
+			return ok(piece.id.toString());
 		}else{
 			return forbidden();
 		}

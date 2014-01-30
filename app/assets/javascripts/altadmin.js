@@ -19,7 +19,7 @@ $( document ).ready(function() {
 });
 
 function saveItem(item){
-	var url = item.itemId ? "/altadmin/piece/" + item.itemId : "/altadmin/piece/" + createNewItem();
+	var url = item.itemId ? "/altadmin/piece/" + item.itemId : "/altadmin/piece/" + createNewPiece();
 	
 	itemJson = {};
 	itemJson.Name = item.find(".val-name").text();
@@ -126,6 +126,7 @@ function createItem(){
 }
 
 function createNewPiece(){
+	var newPieceItemId;
 	$.ajax({
   		type: "POST",
   		async: false,
@@ -133,11 +134,14 @@ function createNewPiece(){
   		data: {password: getPassword()}
 	})
 	.done(function(data) {
-		return data.itemId;
+		newPieceItemId = data;
+		console.log(newPieceItemId);
 	})
 	.error(function(){
 		alert("AIDS!");
 	});
+	item.itemId = newPieceItemId;
+	return newPieceItemId;
 }
 
 function addItem(itemId){
@@ -197,7 +201,6 @@ function makeEditable(itemValue){
 	itemValue.addClass("edit");
 	
 	itemValue.editable(function (value, settings) {
-        console.log(value);
         return (value);
     }, {
         indicator: "saving...",
