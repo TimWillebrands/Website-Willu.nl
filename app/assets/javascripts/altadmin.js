@@ -19,7 +19,7 @@ $( document ).ready(function() {
 });
 
 function saveItem(item){
-	var url = item.itemId ? "/altadmin/piece/" + item.itemId : "/altadmin/piece/" + createNewPiece();
+	var url = item.itemId ? "/altadmin/piece/" + item.itemId : "/altadmin/piece/" + createNewPiece(item);
 	
 	itemJson = {};
 	itemJson.Name = item.find(".val-name").text();
@@ -125,7 +125,7 @@ function createItem(){
   	connectItemButtons(newItem);
 }
 
-function createNewPiece(){
+function createNewPiece(item){
 	var newPieceItemId;
 	$.ajax({
   		type: "POST",
@@ -135,7 +135,6 @@ function createNewPiece(){
 	})
 	.done(function(data) {
 		newPieceItemId = data;
-		console.log(newPieceItemId);
 	})
 	.error(function(){
 		alert("AIDS!");
