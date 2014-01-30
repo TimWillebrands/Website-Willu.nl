@@ -8,50 +8,18 @@ import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ArrayNode;
 import org.codehaus.jackson.node.ObjectNode;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import play.Logger;
-import play.api.templates.Html;
-import play.libs.Akka;
 import play.libs.F.Promise;
 import play.libs.F.Function;
 import play.mvc.Controller;
-import play.mvc.Http.RequestBody;
 import play.mvc.Result;
-import play.mvc.Results;
 import securesocial.core.Identity;
 import securesocial.core.java.SecureSocial;
-import securesocial.core.OAuth2Info;
-
-import com.google.api.client.http.FileContent;
-import com.google.api.client.http.GenericUrl;
-import com.google.api.client.http.HttpResponse;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.jackson.JacksonFactory;
-import com.google.api.services.drive.Drive;
-//import com.google.api.services.drive.Drive.Files.*;
-import com.google.api.services.drive.DriveScopes;
-import com.google.api.services.drive.model.*;
-import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
-import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
-import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.Callable;
 
 public class Admin extends Controller{
@@ -155,7 +123,6 @@ public class Admin extends Controller{
 		return addDbObject((ObjectNode)ctx().request().body().asJson());
 	}
 	
-	@SuppressWarnings("unchecked")
 	@SecureSocial.SecuredAction
 	public static Result addDbObject(ObjectNode json){
 

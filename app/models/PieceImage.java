@@ -5,20 +5,14 @@ import javax.persistence.*;
 import play.Logger;
 import play.db.ebean.*;
 import play.data.validation.*;
+import service.ThumbnailFactory;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-
-import net.coobird.thumbnailator.Thumbnails;
-
-@SuppressWarnings("serial")
 @Entity
 public class PieceImage extends Model {
 
-    @Id
+	private static final long serialVersionUID = -5794045853838851482L;
+
+	@Id
     @Constraints.Required
     public Long id;
 
@@ -43,26 +37,9 @@ public class PieceImage extends Model {
     
     public void setUrl(final String url){
     	this.url = url;
-    	this.thumbnail = "public/images/thumbnail_"+this.name+".png";
+    	this.thumbnail = "public/images/thumbnail_"+this.name.replace(" ", "_")+".png";
     	
-    	new Thread(new Runnable() {
-            public void run(){
-            	BufferedImage image =null;
-                try{
-                   image = ImageIO.read(new URL(url));
-	               File fold=new File("public/images/thumbnails/thumbnail_"+name+".png");
-	               if(fold.exists())
-	            	   fold.delete();
-                   Thumbnails.of(image)
-        		       .size(60, 60)
-        		       .toFile("public/images/thumbnails/thumbnail_"+name+".png");
-                }catch(java.io.FileNotFoundException e){
-                    Logger.info("FileNotFoundException");
-                }catch(IOException e){
-                    Logger.info("IOException");
-                }
-            }
-        }).start();
+    	ThumbnailFactory.createThumbnail(name.replace(" ", "_"), url);
     }
 
     public static Finder<Long,PieceImage> find = new Finder<>(

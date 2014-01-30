@@ -379,6 +379,13 @@ body{
   
 }
 
+#passbox{
+  .rounded-corners();
+  background-color: @mainColour;
+  padding: 5px;
+  width: 280px;
+}
+
 //Class statements
 .textPage{
   background-color: lighten(@accentColour,10%);
@@ -438,5 +445,19 @@ body{
     img{
       opacity: 0.6;
     }
+  }
+}
+
+.new-level{
+  .rounded-corners(3px,3px,3px,3px);
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.image{
+  margin-bottom: 10px;
+  p{
+    margin: 0 0 2px;
   }
 }

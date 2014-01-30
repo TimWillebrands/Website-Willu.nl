@@ -16,6 +16,15 @@ GET     /item/:id                   controllers.Application.getItem(id: Long)
 GET     /subsite/:site              controllers.Application.receiveSubsite(site: String)
 GET     /meta/:site                 controllers.Application.receiveMeta(site: String)
 
+# AltAdmin stuffs
+GET     /altadmin                   controllers.AltAdmin.admin()
+GET     /altadmin/piece             controllers.AltAdmin.getNumberOfPieces()
+POST    /altadmin/piece             controllers.AltAdmin.addPiece()
+GET     /altadmin/piece/:id         controllers.AltAdmin.getPiece(id: Long)
+PUT     /altadmin/piece/:id         controllers.AltAdmin.updatePiece(id: Long)
+DELETE  /altadmin/piece/:id         controllers.AltAdmin.removePiece(id: Long)
+DELETE	/altadmin/checkpass			controllers.AltAdmin.checkpass()
+
 # Admin stuff
 GET     /admin                      controllers.Admin.admin()
 POST    /admin/getAuth              controllers.Admin.getAuthCode()

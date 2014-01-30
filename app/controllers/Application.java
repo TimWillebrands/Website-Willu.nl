@@ -6,12 +6,9 @@ import models.PieceImage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import play.Logger;
 import play.api.templates.Html;
 import play.mvc.Controller;
 import play.mvc.Result;
-import play.mvc.Results;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

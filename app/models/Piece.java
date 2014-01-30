@@ -5,26 +5,22 @@ import javax.persistence.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import play.Logger;
 import play.db.ebean.*;
 import play.data.validation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: tim
- * Date: 12-7-13
- * Time: 14:27
- * To change this template use File | Settings | File Templates.
- */
-
-@SuppressWarnings("serial")
 @Entity
 public class Piece extends Model{
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2442741811145760358L;
+
+
+	@Id
     @Constraints.Required
     public Long id;
 
@@ -64,6 +60,37 @@ public class Piece extends Model{
     	}
     	json.put("images",images);
     	return json;
+    }
+	
+	public void updateWithJson(JSONObject json){
+    	this.name = json.get("Name").toString();
+    	this.description = json.get("Name").toString();
+    	this.kind = json.get("Kind").toString();
+    	this.addeddate = json.get("Date").toString();
+    	try{
+    		this.thumbnail = json.get("Thumb").toString().replace("&amp;", "&");
+        }catch(NullPointerException ex){
+        	this.thumbnail = json.get("Thumbnail").toString().replace("&amp;", "&");
+        }
+
+    	for(PieceImage image : this.images){
+    		image.delete();
+    	}
+    	    	
+    	for(Object imageObj : ((JSONArray) json.get("images")).toArray()){
+    		JSONObject image = (JSONObject) imageObj;
+    		PieceImage img = new PieceImage();
+    		img.name = image.get("Name").toString();
+    		img.description = image.get("Desc").toString();
+    		img.setUrl(image.get("Url").toString().replace("&amp;", "&"));
+    		try{
+            	img.focus = (image.get("FocusX").toString()+"% "+image.get("FocusY").toString()+"%");
+            }catch(NullPointerException ex){
+            	img.focus = image.get("Focus").toString();
+            }
+    		this.images.add(img);
+    	}
+    	this.save();
     }
 
     @OneToMany(cascade=CascadeType.ALL)

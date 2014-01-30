@@ -12,7 +12,7 @@ var curentPiece;
 //Functions
 isInt = function(n) {
 	return typeof n === 'number' && n % 1 == 0;
-}
+};
 
 resize = function(ow,oh){
     var w = $(window).width() - ow;
@@ -20,7 +20,7 @@ resize = function(ow,oh){
     imgCont.css("width",(w).toString() + 'px');
     imgCont.css("height",(h).toString() + 'px');
     menBar.css("height",(h).toString() + 'px');
-}
+};
 
 getBgImg = function(bgId){      	      	
 	return $('<img>').attr('src', function () {
@@ -28,7 +28,7 @@ getBgImg = function(bgId){
         imgUrl = imgUrl.substring(4, imgUrl.length - 1);
     	return imgUrl;
     });
-}
+};
 
 replaceImage = function(imageObj) {
 	mainImg.css('opacity', '0');
@@ -38,7 +38,7 @@ replaceImage = function(imageObj) {
     imagesLoaded( getBgImg(mainImg),function () {
     	mainImg.css('opacity', '1');
     });
-}
+};
 
 descDown = function(animated){
 	if(animated){
@@ -46,7 +46,7 @@ descDown = function(animated){
 	}else{
 		$("#imgDesc").css("bottom",(-($("#imgDesc").height() - $("#descBtn").height() -5)) + "px");
 	}	
-}
+};
 
 changePiece = function(pieceId,imgId) { // int, int
 	if(typeof curentPiece === 'undefined' || !(pieceId in pieces)){
@@ -82,7 +82,7 @@ changePiece = function(pieceId,imgId) { // int, int
     var totalImgsWidth = 0;
     
     for(var i = 0; i < curentPiece.images.length; i++){
-    	var newImg = $( '<img class="imgMenuImage" id="imgId_' +i+'" src="/assets/images/thumbnails/thumbnail_'+ curentPiece.images[i].name +'.png" height="60" >' )
+    	var newImg = $( '<img class="imgMenuImage" id="imgId_' +i+'" src="/assets/images/thumbnails/thumbnail_'+ curentPiece.images[i].name.replace(" ","_") +'.png" height="60" >' );
     	$('#imgMenuContainer').append(newImg);
     	
     	newImg.load(function(){
@@ -93,7 +93,7 @@ changePiece = function(pieceId,imgId) { // int, int
 	    	}
     	});
     }
-}
+};
 
 //Binding events and other script logic
 
