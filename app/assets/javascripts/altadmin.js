@@ -82,6 +82,7 @@ function editItem(item){
     	makeEditable(item.find(".img-focus"));
     	makeEditable(item.find(".img-url"));
     	
+    	item.editable = true;
     	item.find(".btn-edit").prop("disabled",true);
   	})
   	.fail(function() {
@@ -109,6 +110,12 @@ function createImage(item){
 	var newImage = ImageTemplate.clone();
 	newImage.css("display","block");
 	item.find(".images").prepend(newImage);
+	if(item.editable = true){
+		makeEditable(item.find(".img-name"));
+    	makeEditable(item.find(".img-desc"));
+    	makeEditable(item.find(".img-focus"));
+    	makeEditable(item.find(".img-url"));
+	}
 }
 
 function createItem(){
