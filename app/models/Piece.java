@@ -64,7 +64,7 @@ public class Piece extends Model{
 	
 	public void updateWithJson(JSONObject json){
     	this.name = json.get("Name").toString();
-    	this.description = json.get("Name").toString();
+    	this.description = json.get("Desc").toString();
     	this.kind = json.get("Kind").toString();
     	this.addeddate = json.get("Date").toString();
     	try{
